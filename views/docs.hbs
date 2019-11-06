@@ -1,0 +1,22 @@
+<style>
+
+  .menu-content img {
+    padding: 20px;
+  }
+
+  .sc-10atcbm-5.kmvDqY {
+    display: none;
+  }
+
+</style>
+
+<div id="redoc-container"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"></script>
+<script>
+
+  Redoc.init('./api_docs/api.yml', {
+    hideDownloadButton: true
+  }, document.getElementById('redoc-container'));
+
+</script>

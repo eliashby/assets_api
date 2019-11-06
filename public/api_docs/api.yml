@@ -1,0 +1,269 @@
+openapi: 3.0.0
+servers:
+  - url: https://assetsapi.responsewebops.com/api/v1
+    description: Production API
+  - url: https://staging-assetsapi.responsewebops.com/api/v1
+    description: Staging API
+info:
+  version: 1.0.0
+  title: Response Assets API
+  contact:
+    name: API Support
+    email: webdev@response.com
+  x-logo:
+    url: 'https://s3-us-west-2.amazonaws.com/response-web/images/response/RESPlogoBlu.png'
+    altText: Response logo
+tags:
+  - name: Websites
+    description: Adding and Editing Websites
+x-tagGroups:
+  - name: General
+    tags:
+      - Websites
+paths:
+  /websites:
+    get:
+      tags:
+        - Websites
+      summary: Query websites
+      description: Must contain at least one of the following parameters.
+      operationId: Query Websites
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                archived:
+                  description: Boolean to indicate if the website is still live or not.
+                  type: boolean
+                  example: false
+                compliance_approved:
+                  description: Boolean to indicate if the site has been approved by compliance
+                  type: boolean
+                  example: true
+                compliance_update:
+                  description: Boolean to indicate if the current website needs compliance updates.
+                  type: boolean
+                  example: false
+                draw_name: 
+                  description: The brand name associated with the website ie, Scott Yancey, Snap Flip, Josh Altman etc.
+                  type: string
+                  example: scott yancey
+                form_type:
+                  description: The version of form used on the site.
+                  type: string
+                  example: form-a
+                media_channel:
+                  description: The type of marketing platform used ie, facebook, lindedin, yahoo etc.
+                  type: string
+                  example: facebook
+                media_type:
+                  description: The type of marketing source used
+                  type: string
+                  example: infomercial
+                platform:
+                  description: The platform the website was built on ie, node.js, ruby, wordpress etc.
+                  type: string
+                  example: node.js
+                property_type:
+                  description: The category of website ie, brand site, landing page etc.
+                  type: string
+                  example: brand site
+                tags: 
+                  description: Tags associated with the website.
+                  type: array
+                  example: ['single', 'cat lady', 'new jersey']
+                updated_by:
+                  description: Name of the last person who updated the website.
+                  type: string
+                  example: Mckenna
+                url:
+                  description: Full url of the website
+                  type: string
+                  example: https://response.com/site          
+    post:
+      tags:
+        - Websites
+      summmary: Save a new website.
+      description: Save a new website.
+      operationId: Save Website
+      x-code-samples:
+        - lang: 'Shell'
+          source: |
+            'curl -vvv -X POST -H 'x-api-token: { YOUR_API_TOKEN }' -H 'Content-type: application/json' -d '{"url": "https://example.com","media_type": "infomercial","media_channel": "facebook","property_type": "Landing Page","platform": "Instapage","draw_name": "Scott Yance","form_type": "Vip","tags": ["single","cats","cat lady"],"consversion_rate": 20,"traffic_count": 100000,"test_reason": "Test to see if autoplay videos work","test_consclusion": "Everyone hates autoplay","archived": false,"compliance_approved": true,"compliance_update": true,"version": 24524522,"creation_date": "03-22-2018","last_updated": "09-31-2019","updated_by": "McKenna","documentation_url": "https://ramp.response.com/docs/dev/form-a"}' http://localhost:3013/api/beta/websites'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                archived:
+                  description: Boolean to indicate if the website is still live or not.
+                  type: boolean
+                  example: false
+                compliance_approved:
+                  description: Boolean to indicate if the site has been approved by compliance
+                  type: boolean
+                  example: true
+                compliance_update:
+                  description: Boolean to indicate if the current website needs compliance updates.
+                  type: boolean
+                  example: false
+                conversion_rate:
+                  description: The conversion rate number
+                  type: integer
+                  example: 10
+                documentation_url:
+                  description: The url of the link to documentation for the website
+                  type: string
+                  example: https://bitbucket.org/group/cool-project
+                draw_name: 
+                  description: The brand name associated with the website ie, Scott Yancey, Snap Flip, Josh Altman etc.
+                  type: string
+                  example: scott yancey
+                form_type:
+                  description: The version of form used on the site.
+                  type: string
+                  example: form-a
+                media_channel:
+                  description: The type of marketing platform used ie, facebook, lindedin, yahoo etc.
+                  type: string
+                  example: facebook
+                media_type:
+                  description: The type of marketing source used
+                  type: string
+                  example: infomercial
+                platform:
+                  description: The platform the website was built on ie, node.js, ruby, wordpress etc.
+                  type: string
+                  example: node.js
+                property_type:
+                  description: The category of website ie, brand site, landing page etc.
+                  type: string
+                  example: brand site
+                tags: 
+                  description: Tags associated with the website.
+                  type: array
+                  example: ['single', 'cat lady', 'new jersey']
+                test_reason:
+                  description: A description of the test being tried
+                  type: string
+                  example: Testing to see if autoplay videos convert well
+                test_result:
+                  description: A description of what happend with the test
+                  type: string
+                  example: NOBODY LIKES AUTOPLAY VIDEOS
+                traffic_count:
+                  description: The amount of traffic sent to the site
+                  type: integer
+                  example: 100000
+                updated_by:
+                  description: Name of the last person who updated the website.
+                  type: string
+                  example: Mckenna
+                url:
+                  description: Full url of the website
+                  type: string
+                  example: https://response.com/site
+                version:
+                  description: Version of the website. Will use the wrike task id
+                  type: string
+                  example: "305639332"
+              required:
+                - url
+                - media_type
+                - media_channel
+                - property_type
+                - platform
+                - draw_name
+                - archived
+                - compliance_approved
+                - compliance_update
+                - updated_by
+    patch:
+      tags:
+        - Websites
+      summmary: Update an existing website
+      description: Update an existing property. Must include the person updating the website with `updated_by` parameter. Can contain multiple parameters. This API will not allow for deletion and only updating of a website.
+      operationId: Update Website
+      x-code-samples:
+        - lang: 'Shell'
+          source: |
+            'curl -vvv -X POST -H 'x-api-token: { YOUR_API_TOKEN }' -H 'Content-type: application/json' -d '{"url": "https://example.com","media_type": "infomercial","media_channel": "facebook","property_type": "Landing Page","platform": "Instapage","draw_name": "Scott Yance","form_type": "Vip","tags": ["single","cats","cat lady"],"consversion_rate": 20,"traffic_count": 100000,"test_reason": "Test to see if autoplay videos work","test_consclusion": "Everyone hates autoplay","archived": false,"compliance_approved": true,"compliance_update": true,"version": 24524522,"creation_date": "03-22-2018","last_updated": "09-31-2019","updated_by": "McKenna","documentation_url": "https://ramp.response.com/docs/dev/form-a"}' http://localhost:3013/api/beta/websites'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                archived:
+                  description: Boolean to indicate if the website is still live or not.
+                  type: boolean
+                  example: false
+                compliance_approved:
+                  description: Boolean to indicate if the site has been approved by compliance
+                  type: boolean
+                  example: true
+                compliance_update:
+                  description: Boolean to indicate if the current website needs compliance updates.
+                  type: boolean
+                  example: false
+                conversion_rate:
+                  description: The conversion rate number
+                  type: integer
+                  example: 10
+                documentation_url:
+                  description: The url of the link to documentation for the website
+                  type: string
+                  example: https://bitbucket.org/group/cool-project
+                draw_name: 
+                  description: The brand name associated with the website ie, Scott Yancey, Snap Flip, Josh Altman etc.
+                  type: string
+                  example: scott yancey
+                form_type:
+                  description: The version of form used on the site.
+                  type: string
+                  example: form-a
+                media_channel:
+                  description: The type of marketing platform used ie, facebook, lindedin, yahoo etc.
+                  type: string
+                  example: facebook
+                media_type:
+                  description: The type of marketing source used
+                  type: string
+                  example: infomercial
+                platform:
+                  description: The platform the website was built on ie, node.js, ruby, wordpress etc.
+                  type: string
+                  example: node.js
+                property_type:
+                  description: The category of website ie, brand site, landing page etc.
+                  type: string
+                  example: brand site
+                tags: 
+                  description: Tags associated with the website. When updating, the new tags will replace the old tags.
+                  type: array
+                  example: ['single', 'cat lady', 'new jersey']
+                test_reason:
+                  description: A description of the test being tried, When updated, the old value will be replaced by the new value and not appended to it.
+                  type: string
+                  example: Testing to see if autoplay videos convert well
+                test_result:
+                  description: A description of what happend with the test. When updated, the old value will be replaced by the new value and not appended to it.
+                  type: string
+                  example: NOBODY LIKES AUTOPLAY VIDEOS
+                traffic_count:
+                  description: The amount of traffic sent to the site
+                  type: integer
+                  example: 100000
+                updated_by:
+                  description: Name of the last person who updated the website.
+                  type: string
+                  example: Mckenna
+                version:
+                  description: Version of the website. Will use the wrike task id
+                  type: string
+                  example: "305639332"
+              required:
+                - updated_by

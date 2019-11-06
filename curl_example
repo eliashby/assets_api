@@ -1,0 +1,7 @@
+# Save example
+
+curl -vvv -X POST -H 'x-api-token: L2OzN5MLZ6l5XPoykeh6TRhC6EBPPNYXyj5s0gNUOKp2Q3P1gH' -H 'Content-type: application/json' -d '{"url": "https://example.com","media_type": "infomercial","media_channel": "facebook","property_type": "Landing Page","platform": "Instapage","draw_name": "Scott Yance","form_type": "Vip","tags": ["single","cats","cat lady"],"consversion_rate": 20,"traffic_count": 100000,"test_reason": "Test to see if autoplay videos work","test_consclusion": "Everyone hates autoplay","archived": false,"compliance_approved": true,"compliance_update": true,"version": 24524522,"creation_date": "03-22-2018","last_updated": "09-31-2019","updated_by": "McKenna","documentation_url": "https://ramp.response.com/docs/dev/form-a"}' http://localhost:3013/api/beta/websites
+
+# Update example
+
+curl -vvv -X PATCH -H 'x-api-token: L2OzN5MLZ6l5XPoykeh6TRhC6EBPPNYXyj5s0gNUOKp2Q3P1gH' -H 'Content-type: application/json' -d '{"url": "https://example.com","values": {"conversion_rate": 40,"archive": true,"compliance_update": true}}' http://localhost:3013/api/beta/websites

@@ -1,0 +1,40 @@
+# API to add web properties to RAMP database;
+
+Endpoints:
+  - https://example.com/api/v1/property
+
+Allowed http verbs:
+  - Post # Saves a property
+  - Get  # Retrieves a property ( or list of properties )
+  - Put  # Updates a property
+  # Delete will not be allowed, any property going in needs to stay there for compliance and tracking. To remove the property will rather be set to active: false.
+
+Authentication:
+  - Request Header: 'x-api-token: <token>'
+
+Property Schema:
+  - property_id:
+      url: 'https://example.com',
+      media_type: 'infomercial',
+      media_channel: 'facebook',
+      property_type: 'Landing Page',
+      platform: 'Instapage',
+      draw_name: 'Scott Yance',
+      form_type: 'Vip',
+      tags: [
+        'single',
+        'cats',
+        'cat lady'
+      ],
+      consversion_rate: 20,
+      traffic_count: 100000,
+      test_reason: 'Test to see if autoplay videos work',
+      test_consclusion: 'Everyone hates autoplay',
+      archived: false,
+      compliance_approved: true,
+      compliance_update: true,
+      version: 24524522,
+      creation_date: '03-22-2018',
+      last_updated: '09-31-2019',
+      updated_by: 'McKenna',
+      documentation_url: 'https://ramp.response.com/docs/dev/form-a'

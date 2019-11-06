@@ -1,0 +1,40 @@
+{
+  "draw_name": [
+    "Andrew Cordle",
+    "Barbara Corcoran",
+    "BNB",
+    "Bryan Baeumler",
+    "Dallas Robinson",
+    "Dean Graziosi",
+    "Doug Clark",
+    "Good Bones",
+    "Jessie and Tina",
+    "Josh Altman",
+    "Kevin Oleary",
+    "Revonate to Rent",
+    "Robert Herjavec",
+    "Sean Conlon",
+    "Snap Flip",
+    "Scott Yancey",
+    "Tomi Lahren",
+    "Womens Night Out"
+  ],
+  "media_channel": [
+    "direct_mail",
+    "infomercial",
+    "facebook",
+    "google",
+    "youtube",
+    "static",
+    "linked_in"
+  ],
+  "site_source": [
+    "wordpress",
+    "instapage",
+    "static",
+    "node.js",
+    "ruby",
+    "python",
+    "click funnels"
+  ]
+}
